@@ -1,0 +1,10 @@
+body{
+    background-color: rgb(115, 149, 111);
+}
+header {
+    text-align: center;
+    justify-content: center;
+    font-size: 28pt;
+    color: rgb(252, 239, 249);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
