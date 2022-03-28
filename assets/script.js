@@ -7,5 +7,3 @@
 //the API call for Geocoding API
 //the url to change: http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 
-//the API key to use
-//02d9b2c5335979969e2585676e441daf
