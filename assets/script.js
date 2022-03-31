@@ -71,7 +71,7 @@ submitCity.addEventListener("click", function (event)
                         temp.textContent = "Temperature: " + roundFarenheit;
                         wind.textContent = "Wind Speed: " + weather.current.wind_speed;
                         humidity.textContent = "Humidity: " + weather.current.humidity;
-                        UVindex.textContent = "UV Index: " + weather.current.humidity;
+                        UVindex.textContent = "UV Index: " + weather.current.uvi;
 
                         for (let i = 0; i < 5; i++)
                         {
@@ -89,6 +89,23 @@ submitCity.addEventListener("click", function (event)
                             dayWind.textContent = "Wind: " + weather.daily[i].wind_speed;
                             dayHumidity.textContent = "Humidity: " + weather.daily[i].humidity;
                         }
+
+                        if (weather.current.uvi <= 2)
+                        {
+                            UVindex.style.backgroundColor = "green";
+                        }
+                        else if (weather.current.uvi <= 5)
+                        {
+                            UVindex.style.backgroundColor = "yellow";
+                        }
+                        else if (weather.current.uvi <= 7)
+                        {
+                            UVindex.style.backgroundColor = "orange";
+                        }
+                        else
+                        {
+                            UVindex.style.backgroundColor = "red";
+                        }
                     })
                 })
             })
@@ -96,12 +113,8 @@ submitCity.addEventListener("click", function (event)
     }
 })
 
-
-
-
-
-//selectCity Div - the place to choose from a selection of different cities that have been stored in the search history
-var selectCity = document.getElementById("searchCity");
+//for the UV index
+// <2 = green 3-5 = yellow 6-7 = orange 8-10 = red
 
 
 
