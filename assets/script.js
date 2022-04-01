@@ -88,6 +88,7 @@ function onCityBtnClick()
                     var farenheit = ((weather.current.temp) - 273.15) * 1.8 + 32
                     var roundFarenheit = farenheit.toFixed(1);
                     currentForecast.hidden = false;
+                    var currentDescription = weather.current.weather[0].main;
 
                     cityName.textContent = chosenCity + "(" + day + ")" + " ";
                     temp.textContent = "Temperature: " + roundFarenheit;
@@ -99,7 +100,7 @@ function onCityBtnClick()
 
                     for (let i = 0; i < 5; i++)
                     {
-                        var date = moment().add(i, "days").format("L");
+                        var date = moment().add((i + 1), "days").format("L");
                         var displayDate = document.getElementById((i + 55).toString());
                         var weathericon = document.getElementById((i + 75).toString());
                         weathericon.hidden = false;
@@ -166,27 +167,27 @@ function onCityBtnClick()
                         UVindex.style.backgroundColor = "tomato";
                     }
 
-                    if (description.indexOf("Clouds") >= 0)
+                    if (currentDescription.indexOf("Clouds") >= 0)
                     {
                         cityName.append(cloudy);
                     }
-                    else if (description.indexOf("Clear") >= 0)
+                    else if (currentDescription.indexOf("Clear") >= 0)
                     {
                         cityName.append(sunnyclear);
                     }
-                    else if (description.indexOf("Rain") >= 0)
+                    else if (currentDescription.indexOf("Rain") >= 0)
                     {
                         cityName.append(raining);
                     }
-                    else if (description.indexOf("Snow") >= 0)
+                    else if (currentDescription.indexOf("Snow") >= 0)
                     {
                         cityName.append(snowing);
                     }
-                    else if (description.indexOf("Haze") >= 0)
+                    else if (currentDescription.indexOf("Haze") >= 0)
                     {
                         cityName.append(haze);
                     }
-                    else if (description.indexOf("Thunderstorm") >= 0)
+                    else if (currentDescription.indexOf("Thunderstorm") >= 0)
                     {
                         cityName.append(storm);
                     }
@@ -252,6 +253,7 @@ submitCity.addEventListener("click", function (event)
                         var farenheit = ((weather.current.temp) - 273.15) * 1.8 + 32
                         var roundFarenheit = farenheit.toFixed(1);
                         currentForecast.hidden = false;
+                        var currentDescription = weather.current.weather[0].main;
 
                         cityName.textContent = city + "(" + day + ")" + " ";
                         temp.textContent = "Temperature: " + roundFarenheit;
@@ -263,7 +265,7 @@ submitCity.addEventListener("click", function (event)
 
                         for (let i = 0; i < 5; i++)
                         {
-                            var date = moment().add(i, "days").format("L");
+                            var date = moment().add((i + 1), "days").format("L");
                             var displayDate = document.getElementById((i + 55).toString());
                             var weathericon = document.getElementById((i + 75).toString());
                             weathericon.hidden = false;
@@ -330,27 +332,27 @@ submitCity.addEventListener("click", function (event)
                             UVindex.style.backgroundColor = "tomato";
                         }
 
-                        if (description.indexOf("Clouds") >= 0)
+                        if (currentDescription.indexOf("Clouds") >= 0)
                         {
                             cityName.append(cloudy);
                         }
-                        else if (description.indexOf("Clear") >= 0)
+                        else if (currentDescription.indexOf("Clear") >= 0)
                         {
                             cityName.append(sunnyclear);
                         }
-                        else if (description.indexOf("Rain") >= 0)
+                        else if (currentDescription.indexOf("Rain") >= 0)
                         {
                             cityName.append(raining);
                         }
-                        else if (description.indexOf("Snow") >= 0)
+                        else if (currentDescription.indexOf("Snow") >= 0)
                         {
                             cityName.append(snowing);
                         }
-                        else if (description.indexOf("Haze") >= 0)
+                        else if (currentDescription.indexOf("Haze") >= 0)
                         {
                             cityName.append(haze);
                         }
-                        else if (description.indexOf("Thunderstorm") >= 0)
+                        else if (currentDescription.indexOf("Thunderstorm") >= 0)
                         {
                             cityName.append(storm);
                         }
