@@ -49,6 +49,13 @@ haze.src = "assets/images/Windy.png";
 
 var futureForecast = document.getElementById("futureForecast");
 
+//hiding the empty image
+for (let i = 0; i < 5; i++)
+{
+    var emptyimage = document.getElementById((i + 75).toString());
+    emptyimage.hidden = true;
+}
+
 var searchHistory = [];
 var inStorage = localStorage.getItem("city");
 if (null != inStorage)
@@ -94,6 +101,8 @@ function onCityBtnClick()
                     {
                         var date = moment().add(i, "days").format("L");
                         var displayDate = document.getElementById((i + 55).toString());
+                        var weathericon = document.getElementById((i + 75).toString());
+                        weathericon.hidden = false;
                         var dayTemp = document.getElementById((i + 60).toString());
                         var dayWind = document.getElementById((i + 65).toString());
                         var dayHumidity = document.getElementById((i + 70).toString());
@@ -101,7 +110,7 @@ function onCityBtnClick()
 
                         var toFarenheit = ((weather.daily[i].temp.day) - 273.15) * 1.8 + 32
                         var roundFarenheit = toFarenheit.toFixed(1);
-                        var description = weather.current.weather[0].main;
+                        var description = weather.daily[i].weather[0].main;
 
                         eachDay.appendChild(displayDate);
                         eachDay.appendChild(dayTemp);
@@ -113,6 +122,31 @@ function onCityBtnClick()
                         dayTemp.textContent = "Temp: " + roundFarenheit;
                         dayWind.textContent = "Wind: " + weather.daily[i].wind_speed;
                         dayHumidity.textContent = "Humidity: " + weather.daily[i].humidity;
+
+                        if (description.indexOf("Clouds") >= 0)
+                        {
+                            weathericon.src = "assets/images/cloudySun.png";
+                        }
+                        else if (description.indexOf("Clear") >= 0)
+                        {
+                            weathericon.src = "assets/images/sunnyClear.png";
+                        }
+                        else if (description.indexOf("Rain") >= 0)
+                        {
+                            weathericon.src = "assets/images/rain.png";
+                        }
+                        else if (description.indexOf("Snow") >= 0)
+                        {
+                            weathericon.src = "assets/images/Snowing.png";
+                        }
+                        else if (description.indexOf("Haze") >= 0)
+                        {
+                            weathericon.src = "assets/images/Windy.png"
+                        }
+                        else if (description.indexOf("Thunderstorm") >= 0)
+                        {
+                            weathericon.src = "assets/images/Storm.png";
+                        }
                     }
 
                     if (weather.current.uvi <= 2)
@@ -231,6 +265,8 @@ submitCity.addEventListener("click", function (event)
                         {
                             var date = moment().add(i, "days").format("L");
                             var displayDate = document.getElementById((i + 55).toString());
+                            var weathericon = document.getElementById((i + 75).toString());
+                            weathericon.hidden = false;
                             var dayTemp = document.getElementById((i + 60).toString());
                             var dayWind = document.getElementById((i + 65).toString());
                             var dayHumidity = document.getElementById((i + 70).toString());
@@ -238,7 +274,7 @@ submitCity.addEventListener("click", function (event)
 
                             var toFarenheit = ((weather.daily[i].temp.day) - 273.15) * 1.8 + 32
                             var roundFarenheit = toFarenheit.toFixed(1);
-                            var description = weather.current.weather[0].main;
+                            var description = weather.daily[i].weather[0].main;
 
                             eachDay.appendChild(displayDate);
                             eachDay.appendChild(dayTemp);
@@ -250,6 +286,31 @@ submitCity.addEventListener("click", function (event)
                             dayTemp.textContent = "Temp: " + roundFarenheit;
                             dayWind.textContent = "Wind: " + weather.daily[i].wind_speed;
                             dayHumidity.textContent = "Humidity: " + weather.daily[i].humidity;
+
+                            if (description.indexOf("Clouds") >= 0)
+                            {
+                                weathericon.src = "assets/images/cloudySun.png";
+                            }
+                            else if (description.indexOf("Clear") >= 0)
+                            {
+                                weathericon.src = "assets/images/sunnyClear.png";
+                            }
+                            else if (description.indexOf("Rain") >= 0)
+                            {
+                                weathericon.src = "assets/images/rain.png";
+                            }
+                            else if (description.indexOf("Snow") >= 0)
+                            {
+                                weathericon.src = "assets/images/Snowing.png";
+                            }
+                            else if (description.indexOf("Haze") >= 0)
+                            {
+                                weathericon.src = "assets/images/Windy.png"
+                            }
+                            else if (description.indexOf("Thunderstorm") >= 0)
+                            {
+                                weathericon.src = "assets/images/Storm.png";
+                            }
                         }
 
                         if (weather.current.uvi <= 2)
