@@ -93,12 +93,11 @@ function onCityBtnClick()
                     for (let i = 0; i < 5; i++)
                     {
                         var date = moment().add(i, "days").format("L");
-                        var displayDate = document.createElement("h3");
-                        var dayTemp = document.createElement("h4");
-                        var dayWind = document.createElement("h4");
-                        var dayHumidity = document.createElement("h4");
-                        var eachDay = document.createElement("div");
-                        eachDay.setAttribute("id", "future")
+                        var displayDate = document.getElementById((i + 55).toString());
+                        var dayTemp = document.getElementById((i + 60).toString());
+                        var dayWind = document.getElementById((i + 65).toString());
+                        var dayHumidity = document.getElementById((i + 70).toString());
+                        var eachDay = document.getElementById((i + 50).toString());
 
                         var toFarenheit = ((weather.daily[i].temp.day) - 273.15) * 1.8 + 32
                         var roundFarenheit = toFarenheit.toFixed(1);
@@ -231,12 +230,11 @@ submitCity.addEventListener("click", function (event)
                         for (let i = 0; i < 5; i++)
                         {
                             var date = moment().add(i, "days").format("L");
-                            var displayDate = document.createElement("h3");
-                            var dayTemp = document.createElement("h4");
-                            var dayWind = document.createElement("h4");
-                            var dayHumidity = document.createElement("h4");
-                            var eachDay = document.createElement("div");
-                            eachDay.setAttribute("id", "future")
+                            var displayDate = document.getElementById((i + 55).toString());
+                            var dayTemp = document.getElementById((i + 60).toString());
+                            var dayWind = document.getElementById((i + 65).toString());
+                            var dayHumidity = document.getElementById((i + 70).toString());
+                            var eachDay = document.getElementById((i + 50).toString());
 
                             var toFarenheit = ((weather.daily[i].temp.day) - 273.15) * 1.8 + 32
                             var roundFarenheit = toFarenheit.toFixed(1);
