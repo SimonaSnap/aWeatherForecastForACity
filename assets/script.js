@@ -9,16 +9,17 @@
 
 //global variables
 var body = document.body;
+var searchDiv = document.getElementById("searchCity")
 var citySearch = document.createElement("input");
 citySearch.type = "text";
 citySearch.value = "";
-body.appendChild(citySearch);
+searchDiv.appendChild(citySearch);
 
 var day = moment().format("L");
 
 var submitCity = document.createElement("button");
 submitCity.textContent = "Submit";
-body.appendChild(submitCity);
+searchDiv.appendChild(submitCity);
 
 var currentForecast = document.getElementById("todaysInfo");
 var cityName = document.createElement("h1");
@@ -48,6 +49,13 @@ sunnyclear.src = "assets/images/sunnyClear.png";
 haze.src = "assets/images/Windy.png";
 
 var futureForecast = document.getElementById("futureForecast");
+
+
+for (let i = 0; i < 5; i++)
+{
+    var dayDiv = document.getElementById((i + 50).toString());
+    dayDiv.hidden = true;
+}
 
 //hiding the empty image
 for (let i = 0; i < 5; i++)
@@ -84,7 +92,7 @@ function onCityBtnClick()
             {
                 weather.json().then(function (weather)
                 {
-                    console.log(weather);
+                    //console.log(weather);
                     var farenheit = ((weather.current.temp) - 273.15) * 1.8 + 32
                     var roundFarenheit = farenheit.toFixed(1);
                     currentForecast.hidden = false;
@@ -108,12 +116,14 @@ function onCityBtnClick()
                         var dayWind = document.getElementById((i + 65).toString());
                         var dayHumidity = document.getElementById((i + 70).toString());
                         var eachDay = document.getElementById((i + 50).toString());
+                        eachDay.hidden = false;
 
                         var toFarenheit = ((weather.daily[i].temp.day) - 273.15) * 1.8 + 32
                         var roundFarenheit = toFarenheit.toFixed(1);
                         var description = weather.daily[i].weather[0].main;
 
                         eachDay.appendChild(displayDate);
+                        eachDay.appendChild(weathericon);
                         eachDay.appendChild(dayTemp);
                         eachDay.appendChild(dayWind);
                         eachDay.appendChild(dayHumidity);
@@ -249,7 +259,7 @@ submitCity.addEventListener("click", function (event)
                 {
                     weather.json().then(function (weather)
                     {
-                        console.log(weather);
+                        //console.log(weather);
                         var farenheit = ((weather.current.temp) - 273.15) * 1.8 + 32
                         var roundFarenheit = farenheit.toFixed(1);
                         currentForecast.hidden = false;
@@ -273,16 +283,19 @@ submitCity.addEventListener("click", function (event)
                             var dayWind = document.getElementById((i + 65).toString());
                             var dayHumidity = document.getElementById((i + 70).toString());
                             var eachDay = document.getElementById((i + 50).toString());
+                            eachDay.hidden = false;
 
                             var toFarenheit = ((weather.daily[i].temp.day) - 273.15) * 1.8 + 32
                             var roundFarenheit = toFarenheit.toFixed(1);
                             var description = weather.daily[i].weather[0].main;
 
                             eachDay.appendChild(displayDate);
+                            eachDay.appendChild(weathericon);
                             eachDay.appendChild(dayTemp);
                             eachDay.appendChild(dayWind);
                             eachDay.appendChild(dayHumidity);
                             futureForecast.appendChild(eachDay);
+
 
                             displayDate.textContent = date;
                             dayTemp.textContent = "Temp: " + roundFarenheit;
