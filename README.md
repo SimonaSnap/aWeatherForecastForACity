@@ -18,7 +18,7 @@ The 5 day forecast does not include city name, and UV index information
 - Got to make buttons from values set in LocalStorage and linked them to the same div elements, there for the same divs can either be populated by the click of a button, or the submit button 
 
 ## Screenshot of Deployed Page:
-![A picture of the deployed HTML file](./assets/images/weatherForecastScreenshot.png "Weather Forecast Deployed Page Screenshot")
+![A picture of the deployed HTML file](./assets/images/weatherForecastDeployedScreenshot.png "Weather Forecast Deployed Page Screenshot")
 
 Copyright (c) 2022 Simona Snap
 
