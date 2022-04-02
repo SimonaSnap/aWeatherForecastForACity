@@ -78,7 +78,7 @@ function onCityBtnClick()
 
     var chosenCity = thisButton.textContent;
 
-    var getGeoURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + chosenCity + "&limit=3&appid=278839f9e7ae87dbb59691575959053f";
+    var getGeoURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + chosenCity + "&limit=3&appid=278839f9e7ae87dbb59691575959053f";
 
     fetch(getGeoURL).then(function (response)
     {
@@ -227,7 +227,7 @@ submitCity.addEventListener("click", function (event)
     event.preventDefault();
 
     var city = citySearch.value;
-    var geoCodeURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=3&appid=278839f9e7ae87dbb59691575959053f";
+    var geoCodeURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=3&appid=278839f9e7ae87dbb59691575959053f";
 
     var cityHistory = [];
     var savedCities = localStorage.getItem("city");

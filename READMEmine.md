@@ -1,6 +1,6 @@
 # aWeatherForecastForACity
 
-## Deployed GitHub Page:
+## Deployed GitHub Page: https://simonasnap.github.io/aWeatherForecastForACity/ 
 
 ## Description:
 A weather forecast dashboard. Submit a city name in the input to generate today's weather information as well as a 5 day forecast (that city will go into a search hisotry section that will populate on refresh), or click one of the city buttons in the search hisotry to get that information as well.
