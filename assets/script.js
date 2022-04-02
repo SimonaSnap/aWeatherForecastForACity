@@ -50,7 +50,7 @@ haze.src = "assets/images/Windy.png";
 
 var futureForecast = document.getElementById("futureForecast");
 
-
+//hiding the empty divs for now
 for (let i = 0; i < 5; i++)
 {
     var dayDiv = document.getElementById((i + 50).toString());
@@ -64,6 +64,7 @@ for (let i = 0; i < 5; i++)
     emptyimage.hidden = true;
 }
 
+//populating the searchHistory to then make all the buttons that will show up after the user refreshes
 var searchHistory = [];
 var inStorage = localStorage.getItem("city");
 if (null != inStorage)
@@ -71,7 +72,7 @@ if (null != inStorage)
     searchHistory = inStorage.split(",")
 }
 
-
+//when one of the searchHistory buttons is clicked, this allows all the divs to be populated with the information needed
 function onCityBtnClick()
 {
     var thisButton = document.getElementById(this.id);
@@ -93,21 +94,24 @@ function onCityBtnClick()
                 weather.json().then(function (weather)
                 {
                     //console.log(weather);
+                    //setting up the information found in the current day section of the weather forecast
                     var farenheit = ((weather.current.temp) - 273.15) * 1.8 + 32
                     var roundFarenheit = farenheit.toFixed(1);
                     currentForecast.hidden = false;
                     var currentDescription = weather.current.weather[0].main;
 
                     cityName.textContent = chosenCity + "(" + day + ")" + " ";
-                    temp.textContent = "Temperature: " + roundFarenheit;
-                    wind.textContent = "Wind Speed: " + weather.current.wind_speed;
-                    humidity.textContent = "Humidity: " + weather.current.humidity;
+                    temp.textContent = "Temperature: " + roundFarenheit + "°F";
+                    wind.textContent = "Wind Speed: " + weather.current.wind_speed + " MPH";
+                    humidity.textContent = "Humidity: " + weather.current.humidity + "%";
                     UVindex.textContent = "UV Index: " + weather.current.uvi;
 
 
 
                     for (let i = 0; i < 5; i++)
                     {
+                        //i can now get the empty elements i set in the html here and populate with my new information
+                        //i also reveal the div and images that i hid in the code earlier
                         var date = moment().add((i + 1), "days").format("L");
                         var displayDate = document.getElementById((i + 55).toString());
                         var weathericon = document.getElementById((i + 75).toString());
@@ -119,7 +123,9 @@ function onCityBtnClick()
                         eachDay.hidden = false;
 
                         var toFarenheit = ((weather.daily[i].temp.day) - 273.15) * 1.8 + 32
+                        //toFixed allows me to round the temperature I converted to Farenheit to the nearest 10th
                         var roundFarenheit = toFarenheit.toFixed(1);
+                        //this is getting the string used to describe the weather for that day and use it in my conditional later
                         var description = weather.daily[i].weather[0].main;
 
                         eachDay.appendChild(displayDate);
@@ -130,10 +136,11 @@ function onCityBtnClick()
                         futureForecast.appendChild(eachDay);
 
                         displayDate.textContent = date;
-                        dayTemp.textContent = "Temp: " + roundFarenheit;
-                        dayWind.textContent = "Wind: " + weather.daily[i].wind_speed;
-                        dayHumidity.textContent = "Humidity: " + weather.daily[i].humidity;
+                        dayTemp.textContent = "Temp: " + roundFarenheit + "°F";
+                        dayWind.textContent = "Wind: " + weather.daily[i].wind_speed + " MPH";
+                        dayHumidity.textContent = "Humidity: " + weather.daily[i].humidity + "%";
 
+                        //this is where i set up the conditional that will present an image depending what word/string is found in the description
                         if (description.indexOf("Clouds") >= 0)
                         {
                             weathericon.src = "assets/images/cloudySun.png";
@@ -160,6 +167,7 @@ function onCityBtnClick()
                         }
                     }
 
+                    //the current day's weather has a UV Index information - this is letting me change the background of that information depending on how high the UV number is
                     if (weather.current.uvi <= 2)
                     {
                         UVindex.style.backgroundColor = "lightgreen";
@@ -208,6 +216,7 @@ function onCityBtnClick()
     })
 }
 
+//this is where I am creating the search history buttons that will call the onCityBtnClick function written above
 for (let i = 0; i < searchHistory.length; i++)
 {
     var cityBtn = document.createElement("button");
@@ -220,7 +229,9 @@ for (let i = 0; i < searchHistory.length; i++)
 }
 
 
-
+//this is basically exactly the same as up above - but its using the string that the user will submit, and launches once the user clicks on the submit button
+//instead of clicking on the search hisotry buttons that i set up above
+//this eventListener also contains the code needed to populate the localStorage to the create a search history
 submitCity.addEventListener("click", function (event)
 {
     event.stopPropagation();
@@ -229,6 +240,7 @@ submitCity.addEventListener("click", function (event)
     var city = citySearch.value;
     var geoCodeURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=3&appid=278839f9e7ae87dbb59691575959053f";
 
+    //this makes sure to preserve everything that was already in the localStorage before another item is added
     var cityHistory = [];
     var savedCities = localStorage.getItem("city");
     if (null != savedCities)
@@ -266,9 +278,9 @@ submitCity.addEventListener("click", function (event)
                         var currentDescription = weather.current.weather[0].main;
 
                         cityName.textContent = city + "(" + day + ")" + " ";
-                        temp.textContent = "Temperature: " + roundFarenheit;
-                        wind.textContent = "Wind Speed: " + weather.current.wind_speed;
-                        humidity.textContent = "Humidity: " + weather.current.humidity;
+                        temp.textContent = "Temperature: " + roundFarenheit + "°F";
+                        wind.textContent = "Wind Speed: " + weather.current.wind_speed + " MPH";
+                        humidity.textContent = "Humidity: " + weather.current.humidity + "%";
                         UVindex.textContent = "UV Index: " + weather.current.uvi;
 
 
@@ -298,9 +310,9 @@ submitCity.addEventListener("click", function (event)
 
 
                             displayDate.textContent = date;
-                            dayTemp.textContent = "Temp: " + roundFarenheit;
-                            dayWind.textContent = "Wind: " + weather.daily[i].wind_speed;
-                            dayHumidity.textContent = "Humidity: " + weather.daily[i].humidity;
+                            dayTemp.textContent = "Temp: " + roundFarenheit + "°F";
+                            dayWind.textContent = "Wind: " + weather.daily[i].wind_speed + " MPH";
+                            dayHumidity.textContent = "Humidity: " + weather.daily[i].humidity + "%";
 
                             if (description.indexOf("Clouds") >= 0)
                             {
@@ -376,6 +388,8 @@ submitCity.addEventListener("click", function (event)
         }))
     }
 })
+
+//this was where i was experimenting with fetch and figuring out how to get it to work before putting it into the final code above
 
 //for the UV index
 // <2 = green 3-5 = yellow 6-7 = orange 8-10 = red
